@@ -3,6 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { SimplePokemon } from '../interfaces/pokemonInterfaces';
 import { FadeInImage } from './FadeInImage';
 import { getImageColors } from '../helpers/getColors';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParams } from '../navigation/Navigator';
 
 interface Props {
   pokemon: SimplePokemon;
@@ -13,6 +16,12 @@ const windowWidth = Dimensions.get('window').width;
 const PokemonCard = ({ pokemon }: Props) => {
   const [bgColor, setBgColor] = useState('gray');
   const isMounted = useRef(true);
+
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParams>>();
+
+  const handleClick = () => {
+    navigation.navigate('PokemonScreen', { simplePokemon: pokemon, color: bgColor });
+  };
 
   useEffect(() => {
     if (!pokemon.picture) {
@@ -31,7 +40,7 @@ const PokemonCard = ({ pokemon }: Props) => {
   }, [pokemon.picture]);
 
   return (
-    <TouchableOpacity onPress={() => { }} activeOpacity={0.8}>
+    <TouchableOpacity onPress={handleClick} activeOpacity={0.8}>
       <View style={{
         ...styles.pokemonCard,
         backgroundColor: bgColor,
