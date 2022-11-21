@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import { ActivityIndicator, FlatList, Image, View } from 'react-native';
 import React from 'react';
 import { appTheme } from '../theme/appTheme';
