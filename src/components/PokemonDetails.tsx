@@ -8,7 +8,6 @@ interface Props {
 }
 
 const PokemonDetails = ({ pokemon }: Props) => {
-  console.log({ pokemon });
 
   return (
     <ScrollView
