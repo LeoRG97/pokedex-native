@@ -1,21 +1,19 @@
-import { Text } from 'react-native';
+import { StyleProp, Text, TextStyle } from 'react-native';
 import React from 'react';
 import { appTheme } from '../theme/appTheme';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 interface HeaderTitleProps {
   title: string;
+  style?: StyleProp<TextStyle>;
 }
 
-const HeaderTitle = ({ title }: HeaderTitleProps) => {
-  const { top } = useSafeAreaInsets();
+const HeaderTitle = ({ title, style }: HeaderTitleProps) => {
   return (
     <Text
       style={{
         ...appTheme.title,
         ...appTheme.globalMargin,
-        top: top + 20,
-        marginBottom: top + 20,
+        ...style as any,
       }}>
       {title}
     </Text>
