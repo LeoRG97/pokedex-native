@@ -4,10 +4,12 @@ import { appTheme } from '../theme/appTheme';
 import HeaderTitle from '../components/HeaderTitle';
 import usePokemonPaginated from '../hooks/usePokemonPaginated';
 import PokemonCard from '../components/PokemonCard';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const HomeScreen = () => {
   const { simplePokemonList, loadPokemons } = usePokemonPaginated();
 
+  const { top } = useSafeAreaInsets();
   return (
     <>
       <Image
@@ -19,7 +21,13 @@ const HomeScreen = () => {
         alignItems: 'center',
       }}>
         <FlatList
-          ListHeaderComponent={() => <HeaderTitle title="Pokedex" />}
+          ListHeaderComponent={() => <HeaderTitle
+            title="Pokedex"
+            style={{
+              top: top + 20,
+              marginBottom: top + 20,
+            }}
+          />}
           data={simplePokemonList}
           numColumns={2}
           showsVerticalScrollIndicator={false}

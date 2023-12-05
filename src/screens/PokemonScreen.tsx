@@ -19,9 +19,6 @@ const PokemonScreen = ({ navigation, route }: Props) => {
 
   const { isLoading, pokemonData } = usePokemon(id);
 
-  console.log({ pokemonData });
-
-
   return (
     <View style={{ flex: 1 }}>
       {/* Header container */}
